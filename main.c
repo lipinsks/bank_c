@@ -3,21 +3,18 @@
 
 int returnBalance(char *account);
 void setBalance(char *account, int amount);
-void transfer(char *from, char *to);
+void transfer(char *from, char *to, int amount);
 
 int balances[] = {100, 200, 300};
 char *accounts[3] = {"lebron", "stephen", "luka"};
 int accounts_size = sizeof(accounts) / sizeof(accounts[0]);
 
 int main() {
-    transfer("luka", "lebron");
+    transfer("luka", "lebron", 75);
     return 0;
 }
 
-void transfer(char *from, char *to) {
-    int amount = 0;
-    printf("Amount: ");
-    scanf("%d", &amount);
+void transfer(char *from, char *to, int amount) {
 
     for (int i = 0; i < accounts_size; i++) {
         if (strcmp(accounts[i], from) == 0) {

@@ -5,8 +5,10 @@
 int balances[] = {100, 200, 300};
 char *accounts[3] = {"lebron", "stephen", "luka"};
 
+int accounts_size = sizeof(accounts) / sizeof(accounts[0]);
+
 int returnBalance(char *account) {
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < accounts_size; i++) {
         if (strcmp(account, accounts[i]) == 0) {
             return balances[i];
         }
@@ -15,7 +17,7 @@ int returnBalance(char *account) {
 }
 
 int setBalance(char *account, int amount) {
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < accounts_size; i++) {
         if (strcmp(account, accounts[i]) == 0) {
             balances[i] = amount;
             return 0; // Success

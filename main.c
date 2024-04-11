@@ -2,6 +2,6 @@
 #include "transfer.h"
 
 int main() {
-    transfer("lebron", "stephen", 50);
+    transfer("lebron", "stephen", 101);
     return 0;
 }

@@ -5,9 +5,19 @@
 
 void transfer(char *from, char *to, int amount) {
 
-    setBalance(from, returnBalance(from) - amount);
-    printf("Account: %s, Balance: %d\n", from, returnBalance(from));
+    int decreased_amount = returnBalance(from) - amount;
+    int increased_amount = returnBalance(from) + amount;
 
-    setBalance(to, returnBalance(to) + amount);
-    printf("Account: %s, Balance: %d\n", to, returnBalance(to));
+    if (decreased_amount >= 0) {
+
+        setBalance(from, decreased_amount);
+        printf("Account: %s, Balance: %d\n", from, returnBalance(from));
+
+        setBalance(to, increased_amount);
+        printf("Account: %s, Balance: %d\n", to, returnBalance(to));
+
+    } else {
+        printf("Not enough in the bank.\n");
+        printf("balance: %d, chosen amount: %d", returnBalance(from), amount);
+    }
 }

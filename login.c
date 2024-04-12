@@ -41,8 +41,18 @@ void login() {
         if (choice == 1) {
             printf("Balance: %d\n", returnBalance(account));
         } else if (choice == 2) {
-            printf("Type in receiver and amount: \n");
-            scanf("%s %d", receiver, &amount_to_transfer);
+            printf("Type in receiver: \n");
+            scanf("%s", receiver);
+            if (strcmp(receiver, account) == 0) {
+                printf("Cannot transfer money to yourself!\n");
+                continue; // Go back to the start of the loop
+            }
+            printf("Type in amount: \n");
+            scanf("%d", &amount_to_transfer);
+            if (amount_to_transfer < 0) {
+                printf("Amount must be more than zero!\n");
+                continue; // Go back to the start of the loop
+            }
             transfer(account, receiver, amount_to_transfer);
         } else if (choice == 3) {
             printf("Logged out.\n");

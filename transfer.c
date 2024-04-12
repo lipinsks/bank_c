@@ -18,6 +18,6 @@ void transfer(char *from, char *to, int amount) {
 
     } else {
         printf("Not enough in the bank.\n");
-        printf("balance: %d, chosen amount: %d", returnBalance(from), amount);
+        printf("balance: %d, chosen amount: %d\n", returnBalance(from), amount);
     }
 }

@@ -3,6 +3,8 @@
 #include <stdio.h>
 #include <string.h>
 
+#define MAX_USERS 10 // Maximum number of registered users
+
 void login() {
     while (1) { // Loop indefinitely until user chooses to exit
         char account[50]; // Allocate memory for the account name
@@ -14,7 +16,7 @@ void login() {
 
         for (int i = 0; i < accounts_size; i++) {
             if (strcmp(account, accounts[i]) == 0) {
-                printf("Welcome, %s!\n", account);
+                printf("\nWelcome, %s!\n", account);
                 account_index = i;
                 break; // Exit the loop once the account is found
             }
@@ -28,6 +30,7 @@ void login() {
         while (1) {
             int choice = 10;
 
+            printf("\n||||| LOGGED IN ||||||\n");
             printf("Choose your action: \n");
             printf("1. Check your balance\n");
             printf("2. Transfer money\n");
@@ -66,4 +69,24 @@ void login() {
             }
         }
     }
+}
+
+void registerUser() {
+    if (accounts_size >= MAX_USERS) {
+        printf("Maximum number of users reached. Cannot add more users.\n");
+        return;
+    }
+
+    char new_user[50];
+    printf("Name of new user: ");
+    getchar(); // Consume newline left by previous input
+    fgets(new_user, sizeof(new_user), stdin);
+    new_user[strcspn(new_user, "\n")] = '\0'; // Remove trailing newline character
+    appendArrays(0, new_user);
+    printf("New user %s added.\n", new_user);
+}
+
+void showRegisteredUsers() {
+    // Implement logic to show registered users here
+    printf("Functionality not implemented yet.\n");
 }

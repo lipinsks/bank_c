@@ -5,8 +5,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define MAX_USERS 10 // Maximum number of registered users
-
 void menu();
 void showRegisteredUsers();
 
@@ -15,29 +13,10 @@ int main() {
     return 0;
 }
 
-void registerUser() {
-    if (accounts_size >= MAX_USERS) {
-        printf("Maximum number of users reached. Cannot add more users.\n");
-        return;
-    }
-
-    char new_user[50];
-    printf("Name of new user: ");
-    getchar(); // Consume newline left by previous input
-    fgets(new_user, sizeof(new_user), stdin);
-    new_user[strcspn(new_user, "\n")] = '\0'; // Remove trailing newline character
-    appendArrays(0, new_user);
-    printf("New user %s added.\n", new_user);
-}
-
-void showRegisteredUsers() {
-    // Implement logic to show registered users here
-    printf("Functionality not implemented yet.\n");
-}
-
 void menu() {
     int choice;
     while (1) {
+        printf("\n|||||| MENU ||||||");
         printf("\nChoose your action:\n");
         printf("1. Register new user\n");
         printf("2. Login\n");

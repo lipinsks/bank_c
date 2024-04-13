@@ -7,7 +7,6 @@
 // accounts and their balances are only linked to each other using indexes
 int balances[MAX_ACCOUNTS] = {100, 200, 300};
 char *accounts[MAX_ACCOUNTS] = {"lebron", "stephen", "luka"};
-
 int accounts_size = 3;
 
 int returnBalance(char *account) {

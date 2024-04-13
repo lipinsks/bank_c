@@ -1,12 +1,8 @@
-#include "balance.h"
-#include "transfer.h"
 #include "login.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
 void menu();
-void showRegisteredUsers();
 
 int main() {
     menu();

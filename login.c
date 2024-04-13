@@ -87,6 +87,12 @@ void registerUser() {
 }
 
 void showRegisteredUsers() {
-    // Implement logic to show registered users here
-    printf("Functionality not implemented yet.\n");
+    for (int i = 0; i < accounts_size; i++) {
+        printf("%s", accounts[i]);
+        if (i != accounts_size - 1) {
+            printf(", ");
+        } else {
+            printf("\n");
+        }
+    }
 }

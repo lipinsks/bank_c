@@ -33,7 +33,6 @@ void login() {
             printf("2. Transfer money\n");
             printf("3. Logout\n");
             printf("4. Exit program\n");
-            printf("5. Add new user\n");
 
             scanf("%d", &choice);
 
@@ -62,21 +61,7 @@ void login() {
             } else if (choice == 4) {
                 printf("Exiting program.\n");
                 return; // Exit the function if user chooses to exit program
-            } else if (choice == 5) {
-                if(accounts_size < MAX_ACCOUNTS) {
-                    char new_user[50]; // Allocate enough memory to store the new user's name
-                    printf("Name of new user: ");
-                    getchar(); // Consume newline left by previous scanf
-                    fgets(new_user, 50, stdin); // Read the whole line including spaces
-                    // Remove trailing newline character
-                    new_user[strcspn(new_user, "\n")] = '\0';
-                    appendArrays(0, new_user);
-                    printf("New user %s added.\n", new_user);
-                } else {
-                    printf("Maximum number of users reached. Cannot add more users.\n");
-                }
-            }
-            else {
+            } else {
                 printf("Invalid choice. Please choose again.\n");
             }
         }

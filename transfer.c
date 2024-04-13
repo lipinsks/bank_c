@@ -6,7 +6,7 @@
 void transfer(char *from, char *to, int amount) {
 
     int decreased_amount = returnBalance(from) - amount;
-    int increased_amount = returnBalance(from) + amount;
+    int increased_amount = returnBalance(to) + amount;
 
     if (decreased_amount >= 0) {
         setBalance(from, decreased_amount);

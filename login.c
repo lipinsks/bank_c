@@ -2,6 +2,7 @@
 #include "transfer.h"
 #include <stdio.h>
 #include <string.h>
+
 void login() {
     while (1) { // Loop indefinitely until user chooses to exit
         char account[50]; // Allocate memory for the account name

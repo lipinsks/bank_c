@@ -8,6 +8,7 @@
 #define MAX_USERS 10 // Maximum number of registered users
 
 void menu();
+void showRegisteredUsers();
 
 int main() {
     menu();

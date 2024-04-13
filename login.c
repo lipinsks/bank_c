@@ -57,7 +57,7 @@ void login() {
                 transfer(account, receiver, amount_to_transfer);
             } else if (choice == 3) {
                 printf("Logged out.\n");
-                break; // Exit the inner loop if user chooses to logout
+                return; // Exit the inner loop if user chooses to logout
             } else if (choice == 4) {
                 printf("Exiting program.\n");
                 return; // Exit the function if user chooses to exit program

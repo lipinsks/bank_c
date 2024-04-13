@@ -4,6 +4,7 @@
 
 #define MAX_ACCOUNTS 10
 
+// accounts and their balances are only linked to each other using indexes
 int balances[MAX_ACCOUNTS] = {100, 200, 300};
 char *accounts[MAX_ACCOUNTS] = {"lebron", "stephen", "luka"};
 
@@ -41,4 +42,3 @@ void appendArrays(int newBalance, const char *newAccount) {
         printf("Arrays are already full!\n");
     }
 }
-

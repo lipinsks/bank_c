@@ -1,6 +1,7 @@
 #include "login.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <ctype.h>
 
 void menu();
 
@@ -10,7 +11,7 @@ int main() {
 }
 
 void menu() {
-    int choice;
+    char choice;
     while (1) {
         printf("\n|||||| MENU ||||||");
         printf("\nChoose your action:\n");
@@ -19,19 +20,25 @@ void menu() {
         printf("3. Show registered accounts\n");
         printf("4. Exit program\n");
         printf("Enter your choice: ");
-        scanf("%d", &choice);
+        scanf(" %c", &choice); // Added space before %c to consume leading whitespace
+
+        if (!isdigit(choice)) {
+            printf("Invalid input!\n");
+            while (getchar() != '\n'); // Clear input buffer
+            continue;
+        }
 
         switch (choice) {
-            case 1:
+            case '1':
                 registerUser();
                 break;
-            case 2:
+            case '2':
                 login();
                 break;
-            case 3:
+            case '3':
                 showRegisteredUsers();
                 break;
-            case 4:
+            case '4':
                 printf("Exiting program.\n");
                 exit(0);
             default:

@@ -28,7 +28,7 @@ void login() {
         }
 
         while (1) {
-            int choice = 10;
+            int choice;
 
             printf("\n||||| LOGGED IN ||||||\n");
             printf("Choose your action: \n");
@@ -37,7 +37,11 @@ void login() {
             printf("3. Logout\n");
             printf("4. Exit program\n");
 
-            scanf("%d", &choice);
+            if (scanf("%d", &choice) != 1) {
+                printf("Invalid input. Please enter a number.\n");
+                while (getchar() != '\n'); // Clear input buffer
+                continue;
+            }
 
             char receiver[50]; // Allocate memory for the receiver name
             int amount_to_transfer = 0;
@@ -46,11 +50,30 @@ void login() {
                 printf("Balance: %d\n", returnBalance(account));
             } else if (choice == 2) {
                 printf("Type in receiver: \n");
-                scanf("%s", receiver);
+                getchar(); // Consume newline left by previous input
+                fgets(receiver, sizeof(receiver), stdin);
+                receiver[strcspn(receiver, "\n")] = '\0'; // Remove trailing newline character
+
+                int accountFound = 0; // Assume receiver is not in array initially
+
+                // Check if receiver is in the array
+                for (int i = 0; i < accounts_size; i++) {
+                    if (strcmp(receiver, accounts[i]) == 0) {
+                        accountFound = 1; // Set accountFound to 1 if receiver is found in the array
+                        break; // No need to continue searching once found
+                    }
+                }
+
+                if (accountFound == 0) {
+                    printf("No such account!\n");
+                    continue;
+                }
+
                 if (strcmp(receiver, account) == 0) {
                     printf("Cannot transfer money to yourself!\n");
                     continue; // Go back to the start of the loop
                 }
+
                 printf("Type in amount: \n");
                 scanf("%d", &amount_to_transfer);
                 if (amount_to_transfer < 0) {
@@ -58,6 +81,7 @@ void login() {
                     continue; // Go back to the start of the loop
                 }
                 transfer(account, receiver, amount_to_transfer);
+
             } else if (choice == 3) {
                 printf("Logged out.\n");
                 return; // Exit the inner loop if user chooses to logout

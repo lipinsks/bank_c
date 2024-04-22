@@ -8,14 +8,18 @@
 void login() {
     while (1) { // Loop indefinitely until user chooses to exit
         char account[50]; // Allocate memory for the account name
+        char password[50];
 
         printf("Type in your account: ");
         scanf("%s", account);
 
+        printf("Type in your password: ");
+        scanf("%s", password);
+
         int account_index = -1; // Variable to store the index of the account
 
         for (int i = 0; i < accounts_size; i++) {
-            if (strcmp(account, accounts[i]) == 0) {
+            if (strcmp(account, accounts[i]) == 0 && strcmp(password, passwords[i]) == 0) {
                 printf("\nWelcome, %s!\n", account);
                 account_index = i;
                 break; // Exit the loop once the account is found
@@ -23,8 +27,8 @@ void login() {
         }
 
         if (account_index == -1) {
-            printf("Account not found.\n");
-            continue; // Go back to the beginning of the loop to allow logging in again
+            printf("Invalid account or password.\n");
+            break; // Go back to the beginning of the loop to allow logging in again
         }
 
         while (1) {
@@ -35,7 +39,6 @@ void login() {
             printf("1. Check your balance\n");
             printf("2. Transfer money\n");
             printf("3. Logout\n");
-            printf("4. Exit program\n");
 
             if (scanf("%d", &choice) != 1) {
                 printf("Invalid input. Please enter a number.\n");
@@ -85,9 +88,6 @@ void login() {
             } else if (choice == 3) {
                 printf("Logged out.\n");
                 return; // Exit the inner loop if user chooses to logout
-            } else if (choice == 4) {
-                printf("Exiting program.\n");
-                return; // Exit the function if user chooses to exit program
             } else {
                 printf("Invalid choice. Please choose again.\n");
             }
@@ -102,11 +102,18 @@ void registerUser() {
     }
 
     char new_user[50];
+    char new_password[50];
+
     printf("Name of new user: ");
     getchar(); // Consume newline left by previous input
     fgets(new_user, sizeof(new_user), stdin);
     new_user[strcspn(new_user, "\n")] = '\0'; // Remove trailing newline character
-    appendArrays(0, new_user);
+
+    printf("Password for %s: ", new_user);
+    scanf("%s", new_password);
+
+    appendAccounts(0, new_user, new_password);
+
     printf("New user %s added.\n", new_user);
 }
 

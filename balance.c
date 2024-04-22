@@ -6,7 +6,8 @@
 
 // accounts and their balances are only linked to each other using indexes
 int balances[MAX_ACCOUNTS] = {100, 200, 300};
-char *accounts[MAX_ACCOUNTS] = {"lebron", "stephen", "luka"};
+char *accounts[MAX_ACCOUNTS] = {"lebron", "steph", "luka"};
+char *passwords[MAX_ACCOUNTS] = {"lebron", "steph", "luka"};
 int accounts_size = 3;
 
 int returnBalance(char *account) {
@@ -28,10 +29,11 @@ int setBalance(char *account, int amount) {
     return -1; // Indicate account not found
 }
 
-void appendArrays(int newBalance, const char *newAccount) {
+void appendAccounts(int newBalance, const char *newAccount, char *password) {
     if(accounts_size < MAX_ACCOUNTS) {
         balances[accounts_size] = newBalance;
         accounts[accounts_size] = strdup(newAccount); // strdup dynamically allocates memory for the new string
+        passwords[accounts_size] = password;
         if(accounts[accounts_size] == NULL) {
             printf("Memory allocation failed!\n");
             return;

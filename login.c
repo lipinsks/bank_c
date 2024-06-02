@@ -6,8 +6,8 @@
 #define MAX_USERS 10 // Maximum number of registered users
 
 void login() {
-    while (1) { // Loop indefinitely until user chooses to exit
-        char account[50]; // Allocate memory for the account name
+    while (1) {
+        char account[50];
         char password[50];
 
         printf("Type in your account: ");
@@ -16,7 +16,7 @@ void login() {
         printf("Type in your password: ");
         scanf("%s", password);
 
-        int account_index = -1; // Variable to store the index of the account
+        int account_index = -1;
 
         for (int i = 0; i < accounts_size; i++) {
             if (strcmp(account, accounts[i]) == 0 && strcmp(password, passwords[i]) == 0) {
@@ -28,7 +28,7 @@ void login() {
 
         if (account_index == -1) {
             printf("Invalid account or password.\n");
-            break; // Go back to the beginning of the loop to allow logging in again
+            break;
         }
 
         while (1) {
@@ -46,24 +46,24 @@ void login() {
                 continue;
             }
 
-            char receiver[50]; // Allocate memory for the receiver name
+            char receiver[50];
             int amount_to_transfer = 0;
 
             if (choice == 1) {
                 printf("Balance: %d\n", returnBalance(account));
             } else if (choice == 2) {
                 printf("Type in receiver: \n");
-                getchar(); // Consume newline left by previous input
+                getchar();
                 fgets(receiver, sizeof(receiver), stdin);
                 receiver[strcspn(receiver, "\n")] = '\0'; // Remove trailing newline character
 
-                int accountFound = 0; // Assume receiver is not in array initially
+                int accountFound = 0;
 
                 // Check if receiver is in the array
                 for (int i = 0; i < accounts_size; i++) {
                     if (strcmp(receiver, accounts[i]) == 0) {
-                        accountFound = 1; // Set accountFound to 1 if receiver is found in the array
-                        break; // No need to continue searching once found
+                        accountFound = 1;
+                        break;
                     }
                 }
 
@@ -81,13 +81,13 @@ void login() {
                 scanf("%d", &amount_to_transfer);
                 if (amount_to_transfer < 0) {
                     printf("Amount must be more than zero!\n");
-                    continue; // Go back to the start of the loop
+                    continue;
                 }
                 transfer(account, receiver, amount_to_transfer);
 
             } else if (choice == 3) {
                 printf("Logged out.\n");
-                return; // Exit the inner loop if user chooses to logout
+                return;
             } else {
                 printf("Invalid choice. Please choose again.\n");
             }
@@ -105,7 +105,7 @@ void registerUser() {
     char new_password[50];
 
     printf("Name of new user: ");
-    getchar(); // Consume newline left by previous input
+    getchar();
     fgets(new_user, sizeof(new_user), stdin);
     new_user[strcspn(new_user, "\n")] = '\0'; // Remove trailing newline character
 

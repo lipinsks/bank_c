@@ -20,11 +20,11 @@ void menu() {
         printf("3. Show registered accounts\n");
         printf("4. Exit program\n");
         printf("Enter your choice: ");
-        scanf(" %c", &choice); // Added space before %c to consume leading whitespace
+        scanf(" %c", &choice);
 
         if (!isdigit(choice)) {
             printf("Invalid input!\n");
-            while (getchar() != '\n'); // Clear input buffer
+            while (getchar() != '\n');
             continue;
         }
 
